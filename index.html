@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ゴリラ遊動シミュレーション</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="container">
+    <h1>ゴリラ遊動ゲーム</h1>
+
+    <div id="controls">
+      <button id="start-button">Start Game</button>
+        <button id="how-to-play-button" onclick="window.open('how-to-play.html', 'HowToPlay', 'width=600,height=400');">How to Play</button>
+      <!-- <button id="show-statistics-button" style="display: none;">Show Statistics</button> -->
+    </div>
+
+<!-- <div id="statistics-popup" style="display: none;"> -->
+<!--   <h3>Statistics</h3> -->
+<!--   <p id="total-score"></p> -->
+<!--   <p id="move-count"></p> -->
+<!--   <p id="visited-count"></p> -->
+<!--   <p id="scored-count"></p> -->
+<!--   <button id="close-popup">Close</button> -->
+<!-- </div> -->
+    
+    <div id="info">
+      <span id="point">Score: 0</span> | 
+      <span id="score-board">Food intake: 0</span> |
+      <span id="travel-cost">Travel cost: 0</span> |
+      <span id="ten-points">10-food: 0</span> |
+      <span id="five-points">5-food: 0</span> |
+      <span id="one-point">1-food: 0</span>
+    </div>
+
+    <div id="timer">Time: 60s</div>
+    <div id="message"></div>
+    <div id="grid" class="disabled"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+

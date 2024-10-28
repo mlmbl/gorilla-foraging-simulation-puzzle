@@ -1,0 +1,129 @@
+/* 全体設定 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  overflow: hidden;
+}
+
+#container {
+  width: 90%;
+  max-width: 600px;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+#info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#info span {
+  margin: 0 5px;
+  line-height: 1;
+  font-size: 16px;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px;
+  flex-grow: 1;
+  max-height: 100%; 
+  aspect-ratio: 1 / 1;
+}
+
+.grid-button {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  border: 2px solid transparent; /* 初期状態は枠線なし */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* クリック後の枠線を黒に */
+.grid-button.clicked {
+  border-color: black;
+}
+
+/* 0点および取得済みのマス */
+.grid-button.zero, .grid-button.collected {
+  background-color: #d4f7c5; /* 黄緑色 */
+  color: transparent; /* 数字を非表示 */
+}
+
+.grid-button.visited {
+  background-color: gray !important; /* 元いたマスを灰色に */
+}
+
+/* 1点、5点、10点のマス */
+.grid-button.non-zero {
+  background-color: #ffa500; /* オレンジ色 */
+  color: black;
+  font-weight: bold;
+}
+
+.grid-button.eaten {
+  color: white; /* 食べたマスの数字を赤に */
+}
+
+.grid-button.start {
+  border-color: red !important; /* 枠の色を赤に設定 */
+}
+
+.grid-button.ended {
+  background-color: gray; /* 灰色 */
+  border-color: blue !important; /* 枠を青に設定 */
+}
+
+/* 無効化されたマス */
+.grid-button.disabled {
+  background-color: black;
+  cursor: default;
+}
+
+
+.neighbor-highlight {
+  border: 2px dashed black; /* 点線の枠線 */
+}
+
+
+
+#message {
+  font-size: 18px;
+  color: green;
+  font-weight: bold;
+  height: 24px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+#score-board, #ten-points, #five-points, #one-point, #timer {
+  margin: 5px 0;
+}
+
+
