@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gorilla Foraging Simulation Puzzle</title>
+  <link rel="stylesheet" href="how-to-play.css">
+</head>
+<body>
+  <div id="container">
+    <h1>Gorilla Foraging Simulation Puzzle</h1>
+
+    <h2>Overview</h2>
+    <p>
+      This is a puzzle game where you navigate a (western) gorilla group. Within a limited time, you move through habitats, trying to minimize travel costs while foraging for dispersed food resources like fruits, leaves or THV (terrestrial herbaceous vegetation). Become a gorilla and find the optimal foraging route!
+    </p>
+
+    <h2>Game Instructions</h2>
+    <h3>Habitats</h3>
+    <ul>
+      <li>
+        Clicking the <strong>Start Game</strong> button will display a 10x10 grid representing the gorillas' home range. This grid is loosely based on the northern part of Moukalaba-Doudou National Park, Gabon.
+      </li>
+    </ul>
+
+    <h4>Grid Colors and Meaning</h4>
+    <ul>
+      <li><strong>Red squares</strong> indicate large feeding trees with abundant fruits or new leaves (8-15 units of food).</li>
+      <li><strong>Orange squares</strong> indicate small feeding trees with moderate food resources (4-9 units).</li>
+      <li><strong>Green squares</strong> indicate THV patches or ground-level fruits (usually 3 units, sometimes 2 or 4).</li>
+      <li><strong>Light green squares</strong> represent forests with limited food (1 or 2 units).</li>
+      <li><strong>Cream-colored squares</strong> represent savanna with no food resources.</li>
+    </ul>
+    <p>Food quantities are revealed when the gorilla approaches the tile.</p>
+
+    <h4>Gorilla Position and Movement</h4>
+    <ul>
+      <li>The gorilla starts on a square marked with a red frame. You can move to adjacent tiles (vertical, horizontal, or diagonal) by clicking them.</li>
+      <li>The gorilla's current location is outlined in black. Previously visited tiles are marked with a diagonal line.</li>
+      <li>Each move costs 2 points, but moving through savanna tiles costs 3 points.</li>
+    </ul>
+
+    <h4>Foraging</h4>
+    <ul>
+      <li>You can forage by clicking a food tile twice. Each food unit takes 1 second to consume. While foraging, a message saying "Feeding..." will blink on the board, and the food count on the tile will decrease.</li>
+      <li>When all the food is consumed, foraging ends.</li>
+      <li>If you move during foraging, it will stop, but you can return to the same tile to resume.</li>
+    </ul>
+
+    <h3>Time Limit and Scoring</h3>
+    <ul>
+      <li>You have 90 seconds to play. The timer starts when you click the <strong>Start Game</strong> button.</li>
+      <li>The top of the screen displays your <strong>Score</strong>, <strong>Max Score</strong>, <strong>Food Intake</strong>, and <strong>Travel Cost</strong>.</li>
+      <li>When the time is up, the game ends, disabling further movement. The last tile visited will be framed in blue and shaded gray.</li>
+      <li>If time runs out during foraging, it stops immediately.</li>
+      <li>You can also end the game manually by clicking the <strong>Stop Game</strong> button.</li>
+      <li>When the game ends, all hidden food values are revealed.</li>
+    </ul>
+
+    <h2>Tips</h2>
+
+    <h3>Game Concept</h3>
+    <ul>
+      <li>Gorillas have a rough image of what resources are available in their home range (so-called mental map). Therefore, players have a general idea of where THV, small feeding trees, and large feeding trees are located.</li>
+      <li>However, the exact food quantities are unknown, as other animals may have eaten the fruits or the fruiting season may have ended. Hence, you need to approach food patches to know the exact quantity.</li>
+      <li>The game simulates one day in the life of a gorilla, so think of the time limit as a day.</li>
+      <li>Gorillas make decisions based on rough predictions about food availability and distribution and adjust their movements accordingly. Playing this game will help you understand their decision-making strategies.</li>
+    </ul>
+
+    <h3>Foraging Efficiency</h3>
+    <ul>
+      <li>To score high, you must minimize travel costs. Moving efficiently is key, but the shortest path isn't always optimal.</li>
+      <li>Since each move costs 2 points, foraging at a 2-point tile won't increase your score.But skipping such tiles will result in a net loss, making it essential to forage at every opportunity.</li>
+    </ul>
+
+    <h3>Time Management</h3>
+    <ul>
+      <li>Foraging takes time. If you're running out of time, it might be better to skip low-value patches and move quickly toward high-value ones (though it's frustrating when you reach a patch and find it very small value).</li>
+      <li>Deciding whether to cross a savanna tile is crucial. On average, a human click takes 0.4–0.6 seconds (according to ChatGPT), so moving in straight lines can save time. Balancing travel and time costs is critical.</li>
+    </ul>
+
+    <h3>Knowing When to Stop</h3>
+    <ul>
+      <li>If your final score is lower than the max score displayed during play, it means the latter part of your foraging journey wasn't efficient.</li>
+      <li>Even if you have time left, consider whether it's worth spending points to visit distant trees. You might understand why gorillas take naps during the day!</li>
+    </ul>
+
+    <h3>Enjoy the Game!</h3>
+    <p>
+      It's tempting to try to conquer every food patch, but just like gorillas, it's more enjoyable to play leisurely and thoughtfully. Doing so will give you a better sense of what it feels like to be a gorilla.
+    </p>
+
+    <button onclick="window.close()">Close</button>
+  </div>
+</body>
+</html>

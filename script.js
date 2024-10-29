@@ -476,7 +476,7 @@ let activeIntervalId = null;  // 現在の加算処理のIDを追跡
 
 function setIdleState(button, duration, value) {
   grid.classList.add('disabled');
-  messageDisplay.textContent = '食物ゲット！採食中...';
+  messageDisplay.textContent = 'We got food! Now eating...';
 
   button.classList.add('eaten'); // 食べたマスにeatenクラスを追加
 
