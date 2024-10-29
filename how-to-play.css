@@ -1,77 +1,159 @@
-/* 全体設定 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* 全体のレイアウトを調整 */
 body {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 10px;
+  padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  overflow: hidden;
-}
-
-#container {
-  width: 90%;
-  max-width: 600px;
-  height: auto; /* 自動調整に変更 */
-  max-height: 80vh; /* 最大高さを設定 */
-  overflow-y: auto; /* 縦のスクロールを許可 */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  text-align: center;
-  padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  margin-bottom: 20px;
-  color: #333;
-}
-
-h2 {
-  margin: 15px 0;
-  color: #555;
-}
-
-p {
   line-height: 1.6;
-  margin: 10px 0;
-  color: #666;
+  background-color: #f4f4f4;
+  overflow-y: auto;
+  max-width: 600px;
+  margin: auto;
 }
 
-ul {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin-bottom: 20px;
-  text-align: left;
+/* 見出しのスタイル */
+h1, h2, h3 {
+  color: #333;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
-li {
-  margin: 5px 0;
-  color: #666;
+/* 段落のスタイル */
+p {
+  margin-bottom: 10px;
+  text-align: justify;
 }
 
-/* ボタンスタイル */
+/* リストのスタイル */
+ul, ol {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+/* ボタンのスタイル（ポップアップ内のナビゲーションなどに使用する場合） */
 button {
-  margin-top: 20px;
-  padding: 10px 15px;
-  font-size: 16px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #007bff;
   color: white;
-  background-color: #28a745; /* グリーン */
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #218838; /* ダークグリーン */
+  background-color: #0056b3;
 }
+
+/* テーブルのスタイル */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* スクロールバーのスタイル（Windowsなどで快適な表示） */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* /\* 全体設定 *\/ */
+/* * { */
+/*   margin: 0; */
+/*   padding: 0; */
+/*   box-sizing: border-box; */
+/* } */
+
+/* body { */
+/*   height: 100vh; */
+/*   display: flex; */
+/*   align-items: center; */
+/*   justify-content: center; */
+/*   font-family: Arial, sans-serif; */
+/*   background-color: #f4f4f4; */
+/*   overflow: hidden; */
+/* } */
+
+/* #container { */
+/*   width: 90%; */
+/*   max-width: 600px; */
+/*   height: auto; /\* 自動調整に変更 *\/ */
+/*   max-height: 80vh; /\* 最大高さを設定 *\/ */
+/*   overflow-y: auto; /\* 縦のスクロールを許可 *\/ */
+/*   display: flex; */
+/*   flex-direction: column; */
+/*   justify-content: flex-start; */
+/*   text-align: center; */
+/*   padding: 20px; */
+/*   background-color: white; */
+/*   border-radius: 8px; */
+/*   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+/* } */
+
+/* h1 { */
+/*   margin-bottom: 20px; */
+/*   color: #333; */
+/* } */
+
+/* h2 { */
+/*   margin: 15px 0; */
+/*   color: #555; */
+/* } */
+
+/* p { */
+/*   line-height: 1.6; */
+/*   margin: 10px 0; */
+/*   color: #666; */
+/* } */
+
+/* ul { */
+/*   list-style-type: disc; */
+/*   padding-left: 20px; */
+/*   margin-bottom: 20px; */
+/*   text-align: left; */
+/* } */
+
+/* li { */
+/*   margin: 5px 0; */
+/*   color: #666; */
+/* } */
+
+/* /\* ボタンスタイル *\/ */
+/* button { */
+/*   margin-top: 20px; */
+/*   padding: 10px 15px; */
+/*   font-size: 16px; */
+/*   color: white; */
+/*   background-color: #28a745; /\* グリーン *\/ */
+/*   border: none; */
+/*   border-radius: 5px; */
+/*   cursor: pointer; */
+/* } */
+
+/* button:hover { */
+/*   background-color: #218838; /\* ダークグリーン *\/ */
+/* } */
 

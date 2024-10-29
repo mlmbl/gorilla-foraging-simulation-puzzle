@@ -25,6 +25,13 @@ body {
   text-align: center;
 }
 
+/* タイトルの文字サイズを小さく調整 */
+h1 {
+  font-size: 24px; /* 適宜調整してください */
+  margin-bottom: 10px; /* 余白も調整 */
+  text-align: center;
+}
+
 #info {
   display: flex;
   justify-content: space-between;
@@ -62,25 +69,87 @@ body {
 
 /* クリック後の枠線を黒に */
 .grid-button.clicked {
-  border-color: black;
+  border-color: black !important;
 }
 
-/* 0点および取得済みのマス */
-.grid-button.zero, .grid-button.collected {
-  background-color: #d4f7c5; /* 黄緑色 */
+/* /\* 0点および取得済みのマス *\/ */
+/* .grid-button.zero, .grid-button.collected { */
+/*   background-color: #d4f7c5; /\* 黄緑色 *\/ */
+/*   color: transparent; /\* 数字を非表示 *\/ */
+/* } */
+
+
+
+.grid-button.visited {
+    background-image: repeating-linear-gradient(
+	45deg,
+	#d3d3d3 0,
+	#d3d3d3 1px,
+	transparent 1px,
+	transparent 7px
+    );
+    border-color: #d3d3d3; 
+  /* background-color: gray !important; /\* 元いたマスを灰色に *\/ */
+}
+
+/* 0点のマス */
+.grid-button.no-food {
+  background-color: #fffdd0; /* 黄緑色 */
   color: transparent; /* 数字を非表示 */
 }
 
-.grid-button.visited {
-  background-color: gray !important; /* 元いたマスを灰色に */
+/* 非0点マスの基本クラス */
+.grid-button.food-patch {
+  font-weight: bold;
+  color: black;
 }
 
-/* 1点、5点、10点のマス */
-.grid-button.non-zero {
-  background-color: #ffa500; /* オレンジ色 */
-  color: black;
-  font-weight: bold;
+/* /\* 1点のマス (黄緑色) *\/ */
+/* .grid-button.thv { */
+/*   background-color: #98FB98; /\* 黄緑色 *\/ */
+/* } */
+
+.grid-button.savanna {
+  background-color: #f0e68c; /* 薄い黄色 (サバンナ) */
+  color: transparent; /* フォントの色を透明にして表示を隠す */
 }
+
+.grid-button.forest {
+  background-color: #77DD77; /* 黄緑色 (森林) */
+}
+
+.grid-button.thv-forest {
+  background-color: #66CDAA; /* 濃い緑 (高品質THV森林) */
+}
+
+.grid-button.small-food-tree {
+  background-color: #FFA07A; /* サーモン色 (小型食物樹) */
+}
+
+.grid-button.large-food-tree {
+  background-color: #FF6347; /* トマト色 (大型食物樹) */
+}
+
+/* /\* low-quality-thv と high-quality-thv は同じ黄緑色で表示 *\/ */
+/* .grid-button.low-quality-thv { */
+/*   background-color: #98FB98; /\* 黄緑色 *\/ */
+/* } */
+
+/* /\* high-quality-thv は少し濃い緑 *\/ */
+/* .grid-button.high-quality-thv { */
+/*   background-color: #66CDAA; /\* 少し濃い緑 *\/ */
+/* } */
+
+/* /\* 5点のマス (オレンジ色) *\/ */
+/* .grid-button.small-fruits { */
+/*   background-color: #FFA500; /\* オレンジ色 *\/ */
+/* } */
+
+/* /\* 10点のマス (赤色) *\/ */
+/* .grid-button.large-fruits { */
+/*   background-color: #FF6347; /\* トマトレッド *\/ */
+/* } */
+
 
 .grid-button.eaten {
   color: white; /* 食べたマスの数字を赤に */
@@ -97,8 +166,8 @@ body {
 
 /* 無効化されたマス */
 .grid-button.disabled {
-  background-color: black;
-  cursor: default;
+    background-color: white; !important;
+  cursor: not-allowed;
 }
 
 
