@@ -1,147 +1,94 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-<!-- 2024-10-28 Mon 16:41 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ゴリラ遊動シミュレーションパズル</title>
-<meta name="author" content="竹ノ下祐二" />
-<meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="how-to-play.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ゴリラ遊動シミュレーションパズル</title>
+  <link rel="stylesheet" href="how-to-play.css">
 </head>
 <body>
-<div id="content" class="content">
-<h1 class="title">ゴリラ遊動シミュレーションパズル</h1>
+  <div class="container">
+    <h1>ゴリラ遊動シミュレーションパズル</h1>
+    <p><strong>作成者:</strong> yjtknst</p>
 
-<div id="outline-container-orge9c62dd" class="outline-2">
-<h2 id="orge9c62dd"><span class="section-number-2">1.</span> 概要</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-ゴリラの群れを操作するパズルゲームです。制限時間内に、生息地を移動しながら、移動コストを抑えつつ、分散している食べ物（THVや果実）を採食します。ゴリラになったつもりで最適な遊動ルートを考えてください。
-</p>
-</div>
-</div>
+    <h2>概要</h2>
+    <p>ゴリラの群れを操作するパズルゲームです。制限時間内に、生息地を移動しながら、移動コストを抑えつつ、分散している食べ物（THVや果実）を採食します。ゴリラになったつもりで最適な遊動ルートをみつけてください。</p>
 
-<div id="outline-container-org1e73fe8" class="outline-2">
-<h2 id="org1e73fe8"><span class="section-number-2">2.</span> ゲームの説明</h2>
-<div class="outline-text-2" id="text-2">
-</div>
-<div id="outline-container-org0b69119" class="outline-3">
-<h3 id="org0b69119"><span class="section-number-3">2.1.</span> ハビタット</h3>
-<div class="outline-text-3" id="text-2-1">
-<ul class="org-ul">
-<li>マス目はゴリラの遊動域を表します。黒枠で囲まれたマスが、ゴリラの群れの現在地です。</li>
-<li>マス目の色はハビタットのタイプをあらわします。赤、オレンジ、黄緑色のマスが食物パッチをあらわします。
-<ul class="org-ul">
-<li><b>赤色のマス</b> には <span class="underline">大きな結実樹</span> があります。食物量は7〜10です。</li>
-<li><b>オレンジ色のマス</b> には <span class="underline">小さな結実樹</span> があります。食物量は4〜6です。</li>
-<li><b>黄緑色のマス</b> には <span class="underline">THV</span> があります。食物量は1〜3です。</li>
-</ul></li>
-<li>ゴリラの現在地および周辺の食物パッチの食物量が数字で表示されます。</li>
-</ul>
-</div>
-</div>
+    <h2>ゲームの説明</h2>
 
-<div id="outline-container-orgcc603ca" class="outline-3">
-<h3 id="orgcc603ca"><span class="section-number-3">2.2.</span> ゴリラの遊動</h3>
-<div class="outline-text-3" id="text-2-2">
-<ul class="org-ul">
-<li>クリックで、ゴリラは現在の居場所の隣のマス（たて、よこ、ななめのいずれか）に移動することができます。</li>
-<li>ゴリラが通過したマスには網掛けがはいります。同じマスを何度でも通過できます。</li>
-<li>ゴリラが移動すると、移動先のマスの周辺の食物パッチの食物量が数字で表示されます。一度食物量がわかったら、移動しても数字は消えません。</li>
-<li>移動一回ごとに移動コストが2点かかります。</li>
-</ul>
-</div>
-</div>
+    <h3>ハビタット</h3>
+    <ul>
+      <li>Start Gameをクリックすると10ｘ10マスのボードが表示されます。これがゴリラの遊動域を表します。なんとなく、ガボン・ムカラバ国立公園北部をイメージしています。</li>
+    </ul>
 
-<div id="outline-container-orgd34d65a" class="outline-3">
-<h3 id="orgd34d65a"><span class="section-number-3">2.3.</span> 採食</h3>
-<div class="outline-text-3" id="text-2-3">
-<ul class="org-ul">
-<li>食物パッチ上でマスをクリックすると、採食開始です。</li>
-<li>採食には食物量に応じて、1点あたり1秒の採食時間がかかります。採食中はボードの上に「採食中&#x2026;」と表示されます。採食中は移動できません（採食を中断できません）。</li>
-<li>食べ終わった食物パッチは、数字の色が白くなります。</li>
-</ul>
-</div>
-</div>
+    <h4>マス目の色と意味</h4>
+    <ul>
+      <li><strong>赤色のマス:</strong> 大きな採食樹（大量の果実または新葉など）があり、食物量は8〜15です。</li>
+      <li><strong>オレンジ色のマス:</strong> 小さな採食樹（そこそこの量の果実または新葉など）があり、食物量は4〜9です。</li>
+      <li><strong>緑色のマス:</strong> THVの群落や地上でつまみぐいできる果実があり、食物量は3がほとんどですが、2や4のこともあります。</li>
+      <li><strong>黄緑色のマス:</strong> 森を示し、食物はないか、あっても少しだけ（1か2）です。</li>
+      <li><strong>クリーム色のマス:</strong> サバンナで、食物はありません。</li>
+    </ul>
+    <p>食物量は、ゴリラが接近すると表示されます。</p>
 
-<div id="outline-container-org1cfbf69" class="outline-3">
-<h3 id="org1cfbf69"><span class="section-number-3">2.4.</span> 得点</h3>
-<div class="outline-text-3" id="text-2-4">
-<ul class="org-ul">
-<li>制限時間が過ぎるとゲームオーバーです。その時に獲得した食物量から移動コストを差し引いたものが得点になります。</li>
-</ul>
-</div>
-</div>
-</div>
+    <h4>ゴリラの位置と遊動</h4>
+    <ul>
+      <li>ゲーム開始時点で、ゴリラは赤枠で囲まれたマスにいます。隣接するマス（たて・よこ・ななめ）をクリックすると移動できます。</li>
+      <li>ゴリラの現在地は黒枠で囲まれたマスです。ゴリラが一度通過したマスには斜線がはいり、遊動ルートが残ります。同じマスを何度でも通過できます。</li>
+      <li>一マス移動するごとに移動コストを2ポイント消費します。サバンナの移動には3ポイントが消費されます。</li>
+    </ul>
 
+    <h4>採食</h4>
+    <ul>
+      <li>食物があるマスに移動し、もう一度クリックすると採食できます。1ポイント採食するのに1秒かかります。採食中はボード上に「採食中...」の文字が点滅します。また、マス目に表示された食物量が減ってゆきます。</li>
+      <li>食物量がゼロになったら採食終了です。</li>
+      <li>採食中に移動すると、その時点で採食を中断します。残りの食物量が表示され、再訪問して食べることができます。</li>
+    </ul>
 
-<div id="outline-container-org9ed711a" class="outline-2">
-<h2 id="org9ed711a"><span class="section-number-2">3.</span> ポイント</h2>
-<div class="outline-text-2" id="text-3">
-</div>
-<div id="outline-container-org372d6d5" class="outline-3">
-<h3 id="org372d6d5"><span class="section-number-3">3.1.</span> ゲームが想定している状況</h3>
-<div class="outline-text-3" id="text-3-1">
-<ul class="org-ul">
-<li>ゴリラは、自分たちの遊動域のどこに何があるか、だいたいわかっています。だから、おおまかにTHV、小さな結実樹、大きな結実樹の場所がわかるようになっています。</li>
-<li>しかし、食物が実際にどれだけあるかは、正確にはわかりません。他の動物に食べられているかもしれないし、果期が終わっているかもしれません。だから、正確な食物量は食物パッチの近くにゆかないとわかりません。</li>
-<li>ポイントは獲得した食物量から移動コストを引いた値です。やみくもに動き回ってもポイントは得られません。採食効率が上がるルートをたどってください。</li>
-<li>このゲームはゴリラの一日の遊動を体験することが目的です。制限時間＝1日、だと考えてください。</li>
-<li>通過するパッチで必ずしも食物を食べる必要はありません。</li>
-<li>ただし、制限時間内でもプレイヤーの判断でゲームを終了できます。これ以上動いてもコストがかさむだけ、となったらStop Gameボタンを押して終了してください。ゴリラが長時間昼寝するのは、せかせか移動するとかえってコストがかかるからなんですね。</li>
-</ul>
-</div>
-</div>
+    <h2>制限時間と得点</h2>
+    <ul>
+      <li>制限時間は90秒です。Start Gameボタンクリックでカウントダウンが始まります。</li>
+      <li>上部には、Score, Max Score, Food intake, Travel costが表示されます。それぞれ、現在の得点、現在までの得点の最大値、現在までに獲得した食物量、現在までの移動コストを表しています。</li>
+      <li>制限時間に達するとゲーム終了です。それ以上移動できなくなり、最後にいた位置が青枠で囲まれ灰色になります。</li>
+      <li>採食中に制限時間に達するとそこで採食を中断します。</li>
+      <li>残り時間があってもそれ以上動きたくない場合は、Stop gameボタンをクリックすることで手動で終了できます。</li>
+      <li>ゲームが終了すると、隠されていた食物量が表示されます。</li>
+    </ul>
 
-<div id="outline-container-orgc4ae669" class="outline-3">
-<h3 id="orgc4ae669"><span class="section-number-3">3.2.</span> 遊ぶときに考えるべきこと</h3>
-<div class="outline-text-3" id="text-3-2">
-</div>
-<div id="outline-container-orgf46d65f" class="outline-4">
-<h4 id="orgf46d65f"><span class="section-number-4">3.2.1.</span> 採食効率</h4>
-<div class="outline-text-4" id="text-3-2-1">
-<ul class="org-ul">
-<li>価値の高い食物を食べるために長距離を移動すると、その分移動コストがかかります。効率的な遊動ルートを考えましょう。</li>
-</ul>
-</div>
-</div>
+    <h2>ポイント</h2>
 
+    <h3>ゲームが想定している状況</h3>
+    <ul>
+      <li>ゴリラは、自分たちの遊動域のどこに何があるか、だいたいわかっています。だから、おおまかにTHV、小さな採食樹、大きな採食樹の場所がわかるようになっています。</li>
+      <li>しかし、食物が実際にどれだけあるかは、正確にはわかりません。他の動物に食べられているかもしれないし、果期が終わっているかもしれません。だから、正確な食物量は食物パッチの近くにゆかないとわからないようにしてあります。</li>
+      <li>このゲームはゴリラの一日の遊動を体験することが目的です。制限時間＝1日、だと考えてください。</li>
+    </ul>
 
-<div id="outline-container-orge41016b" class="outline-4">
-<h4 id="orge41016b"><span class="section-number-4">3.2.2.</span> THVを食べる時間コスト</h4>
-<div class="outline-text-4" id="text-3-2-2">
-<ul class="org-ul">
-<li>このゲームの戦略的おもしろさは、THVを食べるかどうかです。移動コストが2であるのに対して、THVのポイントは1〜3点です。</li>
-</ul>
+    <h3>採食効率</h3>
+    <ul>
+      <li>高得点を獲得するためには、移動のコストを抑える必要があります。効率よく移動してください。最短距離が常に最適とは限りません。</li>
+      <li>移動コストが2ポイントなので、2ポイントのマスで採食しても得点はあがりません。しかし、採食しないで通過するとマイナスです。同じことは1ポイントのマスでもいえます。収支を考えたら、移動経路上の食物は食べるべきです。</li>
+    </ul>
 
+    <h3>時間コスト</h3>
+    <ul>
+      <li>しかし、採食には時間がかかります。残り時間が少なく、高得点の食物パッチまで早く移動したいときは、利得の少ないマスではあえて採食せず、さっさと移動したほうが得策かもしれません。</li>
+      <li>人間のクリック動作は約0.4〜0.6秒だそうです（ChatGPTによる）。残り時間次第では、サバンナを突っ切って移動したほうがいい場面もありえます。</li>
+    </ul>
 
-<dl class="org-dl">
-<dt>1点のTHV</dt><dd>1点のTHVを食べるために遠回りするのは移動コストの点から考えて論外です。しかし、果実を食べにいくルート上にある場合、食べないより食べた方がましです。</dd>
-<dt>2点のTHV</dt><dd>移動コストと採食上の利益がつりあっています。果実を食べるための最短経路に食物がない場合、少し回り道をしても2点のTHVを食べながら移動した方が有利です</dd>
-<dt>3点のTHV</dt><dd>回り道をして食べる価値がありますが、利得は1点です。食べた結果、点数の入らないマスをより多く移動する必要が生じるならば、食べない方が有利になることもあるでしょう。</dd>
-<dt>いずれにせよ時間コストがかかる</dt><dd>ここで注意しなくてはならないのが時間コストです。途中のTHVをちまちま食べていると、時間切れで果実を食べられなくなってしまうかもしれません。</dd>
-</dl>
-</div>
-</div>
+    <h3>これ以上動いても...</h3>
+    <ul>
+      <li>ボードには、プレイ中の最大得点が表示されます。最終スコアがこの最大得点より低いということは、後半の遊動は労多くして益少なしだったことを意味します。</li>
+      <li>移動コストと時間コストのバランスが重要です。動かないでのんびりするほうが得策な場合もあります。ゴリラもしばしば昼寝をします。</li>
+    </ul>
 
-<div id="outline-container-org3f4facf" class="outline-4">
-<h4 id="org3f4facf"><span class="section-number-4">3.2.3.</span> 食物の不確実性</h4>
-<div class="outline-text-4" id="text-3-2-3">
-<ul class="org-ul">
-<li>果実量もTHVの量も、固定値ではありません。実際にどれだけ食べられるかは近くにいかないとわかりません。こういう感じで回ろう、と思って動き始めても、見込み通りにはポイントを稼げません。臨機応変に遊動ルートを変える必要があります。</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="postamble" class="status">
-<p class="author">Author: 竹ノ下祐二</p>
-<p class="date">Created: 2024-10-28 Mon 16:41</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
-</div>
+    <h3>たのしい遊び方</h3>
+    <ul>
+      <li>ついつい全部の食物を制覇したくなりがちですが、のんびり考えながらプレイするのがおすすめです。そのほうが、ゴリラの気持ちがわかるかもしれません。</li>
+    </ul>
+
+    <button onclick="window.close()">閉じる</button>
+  </div>
 </body>
 </html>
+

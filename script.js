@@ -49,7 +49,11 @@ function startGame() {
 
 
 function setInitialPosition() {
-  const allButtons = Array.from(grid.children);
+  // const allButtons = Array.from(grid.children);
+  const allButtons = Array.from(grid.children).filter(button => {
+  // サバンナセルを除外
+  return !button.classList.contains('savanna');
+  });
   const randomIndex = Math.floor(Math.random() * allButtons.length);
   const randomCell = allButtons[randomIndex];
   console.log(`Initial position set: ${randomCell.dataset.index}, Value: ${randomCell.dataset.value}`); // 追加
@@ -224,7 +228,7 @@ function generateValues(gridSize = 10) {
   // 季節パラメータの導入 (0~1の範囲で変動)
   const seasonFactor = Math.random();
 
-  // Small-Fruitsセルの生成 (5〜10点の範囲)
+  // Small-Fruitsセルの生成 (4〜9点の範囲)
   const smallFruitsCells = generateFruitsCells(
     gridSize,
     seasonFactor,
@@ -236,7 +240,7 @@ function generateValues(gridSize = 10) {
     values[index] = { value, category: 'small-food-tree' };
   });
 
-  // Large-Fruitsセルの生成 (11〜20点の範囲)
+  // Large-Fruitsセルの生成 (8〜15点の範囲)
   const largeFruitsCells = generateFruitsCells(
     gridSize,
     seasonFactor,
@@ -244,20 +248,20 @@ function generateValues(gridSize = 10) {
     savannaCells
   );
   largeFruitsCells.forEach(index => {
-    const value = Math.floor(Math.random() * 8) + 8; // 8〜20のランダムな値
+    const value = Math.floor(Math.random() * 8) + 8; // 8〜15のランダムな値
     values[index] = { value, category: 'large-food-tree' };
   });
 
-  // forestセルの生成 (10%が2点、20%が1点、70%が0点)
+  // Forestセルの生成 (10%が2点、20%が1点、70%が0点)
   const forestCells = values
     .map((_, index) => index)
     .filter(index => values[index] === null);
 
   const forestCount = forestCells.length;
-  const twoPointForestCount = Math.floor(forestCount * 0.2);
-  const onePointForestCount = Math.floor(forestCount * 0.3);
+  const twoPointForestCount = Math.floor(forestCount * 0.1);
+  const onePointForestCount = Math.floor(forestCount * 0.2);
 
-  const shuffledForestCells = forestCells.sort(() => Math.random() - 0.5);
+  const shuffledForestCells = forestCells.sort(() => Math.random() - 0.7);
 
   shuffledForestCells.slice(0, twoPointForestCount).forEach(index => {
     values[index] = { value: 2, category: 'forest' };
@@ -301,30 +305,6 @@ function generateGrid() {
 
   console.log('Grid generation completed'); // 完了ログ
 }
-
-// function generateGrid() {
-//   console.log('generateGrid called'); // デバッグ用ログ
-
-//   const allValues = generateValues(); // 値とカテゴリーのペアを生成
-
-//   for (let i = 0; i < 100; i++) {
-//     const button = document.createElement('button');
-//     const { value, category } = allValues[i];
-
-//     button.classList.add('grid-button', category);
-//     button.dataset.value = value;
-//     button.dataset.index = i;
-//     button.dataset.revealed = 'false';
-
-//     // サバンナセルは点数を表示しない
-//     button.textContent = category === 'savanna' ? '' : value;
-
-//     button.addEventListener('click', () => handleButtonClick(button));
-//     grid.appendChild(button); // グリッドに追加
-//   }
-
-//   console.log('Grid generation completed'); // 完了ログ
-// }
 
 
 function handleButtonClick(button) {
@@ -374,7 +354,12 @@ function handleButtonClick(button) {
 
   revealTiles(button);
 
-  moveCount += 2;
+
+  // サバンナセルの場合、移動コストを3に設定
+  const moveCost = button.classList.contains('savanna') ? 3 : 2;
+  moveCount += moveCost; // 移動コストを加算
+    
+  // moveCount += 2;
   updateTravelCost();
   updatePoint();
 
@@ -437,19 +422,6 @@ function revealTiles(button) {
   }
 }
 
-// function revealTiles(button) {
-//   const index = parseInt(button.dataset.index);
-//   const surroundingIndices = getSurroundingIndices(index);
-
-//   // クリックしたマスとその近傍の数値を表示
-//   [index, ...surroundingIndices].forEach(idx => {
-//     const tile = grid.children[idx];
-//     if (tile.dataset.revealed === "false") {
-//       tile.textContent = tile.dataset.value; // 数値を表示
-//       tile.dataset.revealed = "true"; // 表示済みに設定
-//     }
-//   });
-// }
 
 function getSurroundingIndices(index) {
   const row = Math.floor(index / 10);
@@ -552,51 +524,6 @@ function setIdleState(button, duration, value) {
   }, interval);
 }
 
-// function setIdleState(button, duration, value) {
-//   grid.classList.add('disabled');
-//   messageDisplay.textContent = '食物ゲット！採食中...';
-
-//   button.classList.add('eaten'); // 食べたマスにeatenクラスを追加
-
-//   let remainingValue = value - 1;  // 初回クリックで1減少
-//   button.textContent = remainingValue;  // 初回の表示更新
-//   button.dataset.value = remainingValue;  // dataset も更新
-
-//   score += 1;  // スコアを1加算
-//   updateScore();
-
-//   const interval = 1000;  // 1秒ごとに処理
-
-//   activeIntervalId = setInterval(() => {
-//     // 制限時間が切れている場合、処理を停止
-//     if (remainingTime <= 0) {
-//       clearInterval(activeIntervalId);
-//       activeIntervalId = null;
-//       console.log("Time's up! Stopping all eating processes.");
-//       return;
-//     }
-
-//     if (remainingValue > 0) {
-//       remainingValue -= 1;  // 1減少
-//       button.textContent = remainingValue;  // 表示を更新
-//       button.dataset.value = remainingValue;  // dataset 更新
-
-//       score += 1;  // スコアを1加算
-//       updateScore();
-//     } else {
-//       clearInterval(activeIntervalId);  // インターバルを停止
-//       activeIntervalId = null;
-
-//       // 採食中フラグを解除し、UIを更新
-//       button.textContent = '0';  // 数値を0に設定
-//       button.dataset.scored = "true";  // 得点獲得済みフラグをセット
-//       button.dataset.eating = "false";  // 採食中フラグを解除
-//       grid.classList.remove('disabled');
-//       messageDisplay.textContent = '';
-//     }
-//   }, interval);
-// }
-
 
 function stopGame() {
   clearInterval(gameInterval);  // タイマーを停止
@@ -616,17 +543,28 @@ function startTimer() {
   }, 1000);
 }
 
-
 function endGame() {
-  stopButton.style.display = 'none';  // Stopボタンを隠す
+  // ゲーム終了処理
+  stopButton.style.display = 'none'; // Stopボタンを隠す
+  timerDisplay.textContent = 'Game is Over.'; // 終了メッセージ
 
-  timerDisplay.textContent = 'Game is Over.'; // 残り時間の表示を変更
-  document.querySelectorAll('.grid-button').forEach(button => button.disabled = true); // 全てのボタンを無効化
+  // すべてのグリッドボタンを無効化し、未表示の非0点セルを白で表示
+  document.querySelectorAll('.grid-button').forEach(button => {
+    button.disabled = true; // ボタンを無効化
+
+    if (button.dataset.revealed === 'false' && parseInt(button.dataset.value) > 0) {
+      // 非0点セルのみ白色フォントで表示
+      button.textContent = button.dataset.value;
+      button.style.color = 'white'; // フォント色を白に設定
+    }
+  });
 
   if (previousButton) {
-    previousButton.classList.add('ended'); // タイムアップのクラスを現在のマスのみに追加
+    previousButton.classList.add('ended'); // 終了状態のクラスを追加
     previousButton.classList.remove('clicked'); // 黒枠を解除
   }
 }
+
+
 
 

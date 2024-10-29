@@ -1,17 +1,18 @@
-/* 全体のレイアウトを調整 */
+/* 全体のレイアウト調整 */
 body {
-  margin: 10px;
-  padding: 0;
+  margin: 0;
+  padding: 20px;
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  background-color: #f4f4f4;
-  overflow-y: auto;
-  max-width: 600px;
+  background-color: #e0e0e0; /* 少し明るめのグレー */
+  max-width: 90%; /* 横幅を90%に調整して中央に配置 */
   margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* さりげない影を追加 */
+  border-radius: 8px; /* 角を少し丸める */
 }
 
 /* 見出しのスタイル */
-h1, h2, h3 {
+h1, h2, h3, h4 {
   color: #333;
   text-align: center;
   margin-top: 10px;
@@ -24,23 +25,30 @@ p {
   text-align: justify;
 }
 
-/* リストのスタイル */
+/* リストのスタイル調整 */
 ul, ol {
-  margin-left: 20px;
-  margin-bottom: 10px;
+  margin: 10px 0;
+  padding-left: 20px; /* 軽いインデント */
+  list-style-position: outside; /* リスト記号を外側に配置 */
 }
 
-/* ボタンのスタイル（ポップアップ内のナビゲーションなどに使用する場合） */
+li {
+  margin: 5px 0;
+}
+
+/* ボタンのスタイル */
 button {
   display: block;
   width: 100%;
+  max-width: 200px;
   padding: 10px;
-  margin: 10px 0;
+  margin: 10px auto;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  text-align: center;
 }
 
 button:hover {
@@ -52,6 +60,8 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 10px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 th, td {
@@ -62,9 +72,10 @@ th, td {
 
 th {
   background-color: #f2f2f2;
+  font-weight: bold;
 }
 
-/* スクロールバーのスタイル（Windowsなどで快適な表示） */
+/* スクロールバーのスタイル */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -75,85 +86,10 @@ th {
 
 ::-webkit-scrollbar-thumb {
   background: #888;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-/* /\* 全体設定 *\/ */
-/* * { */
-/*   margin: 0; */
-/*   padding: 0; */
-/*   box-sizing: border-box; */
-/* } */
-
-/* body { */
-/*   height: 100vh; */
-/*   display: flex; */
-/*   align-items: center; */
-/*   justify-content: center; */
-/*   font-family: Arial, sans-serif; */
-/*   background-color: #f4f4f4; */
-/*   overflow: hidden; */
-/* } */
-
-/* #container { */
-/*   width: 90%; */
-/*   max-width: 600px; */
-/*   height: auto; /\* 自動調整に変更 *\/ */
-/*   max-height: 80vh; /\* 最大高さを設定 *\/ */
-/*   overflow-y: auto; /\* 縦のスクロールを許可 *\/ */
-/*   display: flex; */
-/*   flex-direction: column; */
-/*   justify-content: flex-start; */
-/*   text-align: center; */
-/*   padding: 20px; */
-/*   background-color: white; */
-/*   border-radius: 8px; */
-/*   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
-/* } */
-
-/* h1 { */
-/*   margin-bottom: 20px; */
-/*   color: #333; */
-/* } */
-
-/* h2 { */
-/*   margin: 15px 0; */
-/*   color: #555; */
-/* } */
-
-/* p { */
-/*   line-height: 1.6; */
-/*   margin: 10px 0; */
-/*   color: #666; */
-/* } */
-
-/* ul { */
-/*   list-style-type: disc; */
-/*   padding-left: 20px; */
-/*   margin-bottom: 20px; */
-/*   text-align: left; */
-/* } */
-
-/* li { */
-/*   margin: 5px 0; */
-/*   color: #666; */
-/* } */
-
-/* /\* ボタンスタイル *\/ */
-/* button { */
-/*   margin-top: 20px; */
-/*   padding: 10px 15px; */
-/*   font-size: 16px; */
-/*   color: white; */
-/*   background-color: #28a745; /\* グリーン *\/ */
-/*   border: none; */
-/*   border-radius: 5px; */
-/*   cursor: pointer; */
-/* } */
-
-/* button:hover { */
-/*   background-color: #218838; /\* ダークグリーン *\/ */
-/* } */
 
