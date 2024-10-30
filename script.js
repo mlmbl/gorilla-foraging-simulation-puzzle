@@ -252,14 +252,14 @@ function generateValues(gridSize = 10) {
     values[index] = { value, category: 'large-food-tree' };
   });
 
-  // Forestセルの生成 (10%が2点、20%が1点、70%が0点)
+  // Forestセルの生成 (5%が2点、15%が1点、80%が0点)
   const forestCells = values
     .map((_, index) => index)
     .filter(index => values[index] === null);
 
   const forestCount = forestCells.length;
-  const twoPointForestCount = Math.floor(forestCount * 0.1);
-  const onePointForestCount = Math.floor(forestCount * 0.2);
+  const twoPointForestCount = Math.floor(forestCount * 0.05);
+  const onePointForestCount = Math.floor(forestCount * 0.15);
 
   const shuffledForestCells = forestCells.sort(() => Math.random() - 0.7);
 
