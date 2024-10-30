@@ -204,12 +204,12 @@ function generateValues(gridSize = 10) {
     values[index] = { value: 0, category: 'savanna' };
   });
 
-  // THVセルの生成 (5%が4点、15%が2点、80%が3点)
+  // THVセルの生成 (10%が4点、30%が2点、60%が3点)
   const thvCells = generateTHVLines(gridSize, 20, 5, savannaCells, 5);
   const thvCount = thvCells.length;
 
   const fourPointCount = Math.floor(thvCount * 0.1);
-  const twoPointCount = Math.floor(thvCount * 0.25);
+  const twoPointCount = Math.floor(thvCount * 0.3);
 
   const shuffledThvCells = thvCells.sort(() => Math.random() - 0.5);
 
