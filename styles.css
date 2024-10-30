@@ -160,7 +160,7 @@ h1 {
 }
 
 .grid-button.ended {
-  background-color: gray; /* 灰色 */
+  /* background-color: gray; /\* 灰色 *\/ */
   border-color: blue !important; /* 枠を青に設定 */
 }
 
