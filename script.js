@@ -248,7 +248,7 @@ function generateValues(gridSize = 10) {
     savannaCells
   );
   largeFruitsCells.forEach(index => {
-    const value = Math.floor(Math.random() * 8) + 8; // 8〜15のランダムな値
+    const value = Math.floor(Math.random() * 9) + 7; // 7〜15のランダムな値
     values[index] = { value, category: 'large-food-tree' };
   });
 
