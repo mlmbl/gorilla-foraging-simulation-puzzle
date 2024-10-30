@@ -7,7 +7,7 @@ const stopButton = document.getElementById('stop-button');
 
 let score = 0;
 let maxScore = 0;
-let remainingTime = 120;  // 制限時間
+let remainingTime = 90;  // 制限時間
 let idleState = false;
 let gameInterval;
 let previousButton = null; // 前回クリックされたボタンを追跡
