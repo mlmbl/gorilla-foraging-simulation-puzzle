@@ -130,26 +130,6 @@ h1 {
   background-color: #FF6347; /* トマト色 (大型食物樹) */
 }
 
-/* /\* low-quality-thv と high-quality-thv は同じ黄緑色で表示 *\/ */
-/* .grid-button.low-quality-thv { */
-/*   background-color: #98FB98; /\* 黄緑色 *\/ */
-/* } */
-
-/* /\* high-quality-thv は少し濃い緑 *\/ */
-/* .grid-button.high-quality-thv { */
-/*   background-color: #66CDAA; /\* 少し濃い緑 *\/ */
-/* } */
-
-/* /\* 5点のマス (オレンジ色) *\/ */
-/* .grid-button.small-fruits { */
-/*   background-color: #FFA500; /\* オレンジ色 *\/ */
-/* } */
-
-/* /\* 10点のマス (赤色) *\/ */
-/* .grid-button.large-fruits { */
-/*   background-color: #FF6347; /\* トマトレッド *\/ */
-/* } */
-
 
 .grid-button.eaten {
   color: white; /* 食べたマスの数字を赤に */
