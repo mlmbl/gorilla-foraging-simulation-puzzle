@@ -487,8 +487,11 @@ function setIdleState(button, duration, value) {
   score += 1;  // スコアを1加算
   updateScore();
 
-  const interval = 1000;  // 1秒ごとに処理
-
+  // const interval = 1000;  // 1秒ごとに処理
+  // クラスに応じてインターバルを設定
+  const interval = (button.classList.contains('large-food-tree') || button.classList.contains('small-food-tree')) ? 500 : 1000;
+console.log("Set interval to:", interval);
+    
   activeIntervalId = setInterval(() => {
     // 制限時間が切れている場合、すべての処理を停止
     if (remainingTime <= 0) {
