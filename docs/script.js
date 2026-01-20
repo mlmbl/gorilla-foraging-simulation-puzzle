@@ -549,7 +549,7 @@ function startTimer() {
 function endGame() {
   // ゲーム終了処理
   stopButton.style.display = 'none'; // Stopボタンを隠す
-  timerDisplay.textContent = 'Game is Over.'; // 終了メッセージ
+  timerDisplay.textContent = 'Game Over.'; // 終了メッセージ
 
   // すべてのグリッドボタンを無効化し、未表示の非0点セルを白で表示
   document.querySelectorAll('.grid-button').forEach(button => {
