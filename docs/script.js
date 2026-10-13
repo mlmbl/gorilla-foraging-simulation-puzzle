@@ -1,4 +1,5 @@
 const grid = document.getElementById('grid');
+const gridWrap = document.getElementById('grid-wrap');
 const scoreBoard = document.getElementById('score-board');
 const timerDisplay = document.getElementById('timer');
 const messageDisplay = document.getElementById('message');
@@ -12,6 +13,21 @@ let idleState = false;
 let gameInterval;
 let previousButton = null; // 前回クリックされたボタンを追跡
 let moveCount = 0; // マスを移動した回数
+let trail = []; // ゴリラの軌跡（訪れたセルの index を順に記録）
+
+// 軌跡を描く SVG レイヤー（#grid-wrap の上に重ねる）
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const trailSvg = document.createElementNS(SVG_NS, 'svg');
+trailSvg.id = 'trail';
+const trailPath = document.createElementNS(SVG_NS, 'path');
+trailPath.classList.add('trail-line');
+const trailStart = document.createElementNS(SVG_NS, 'circle');
+trailStart.classList.add('trail-start');
+trailSvg.append(trailPath, trailStart);
+gridWrap.appendChild(trailSvg);
+
+// 画面サイズが変わったら軌跡を描き直す
+new ResizeObserver(drawTrail).observe(gridWrap);
 
 
 // スタートボタンのクリックでタイル生成とゲーム開始
@@ -31,7 +47,7 @@ function startGame() {
   document.getElementById('max-score').textContent = 'Max Score: 0';
   document.getElementById('travel-cost').textContent = 'Travel cost: 0';
 
-    
+
   startButton.disabled = true; // スタートボタンを無効化
   stopButton.style.display = 'inline';  // Stopボタンを表示
   generateGrid(); // タイルを生成して表示
@@ -40,6 +56,9 @@ function startGame() {
   previousButton = randomCell; // 初期位置を追跡
   randomCell.classList.add('clicked'); // 黒枠を設定
   randomCell.classList.add('start'); // 初期位置にstartクラスを追加
+
+  trail = [parseInt(randomCell.dataset.index)]; // 軌跡の始点
+  drawTrail();
 
   revealTiles(randomCell); // 初期位置とその近傍のセルを表示
 
@@ -343,7 +362,7 @@ function handleButtonClick(button) {
       previousButton.dataset.eating = "false"; // 採食フラグを解除
     }
   }
-    
+
   if (previousButton) {
     previousButton.classList.remove('clicked');
     previousButton.classList.add('visited');
@@ -358,14 +377,67 @@ function handleButtonClick(button) {
   // サバンナセルの場合、移動コストを3に設定
   const moveCost = button.classList.contains('savanna') ? 3 : 2;
   moveCount += moveCost; // 移動コストを加算
-    
+
   // moveCount += 2;
   updateTravelCost();
   updatePoint();
 
   previousButton = button;
   button.classList.add('clicked');
+
+  trail.push(parseInt(button.dataset.index)); // 軌跡に追加
+  drawTrail();
 }
+
+
+// 軌跡の描画 ------------------------------------------------------------
+
+// セル中心の座標（#grid-wrap 基準、px）
+function cellCenter(index) {
+  const cell = grid.children[index];
+  const cr = cell.getBoundingClientRect();
+  const wr = gridWrap.getBoundingClientRect();
+  return { x: cr.left - wr.left + cr.width / 2, y: cr.top - wr.top + cr.height / 2 };
+}
+
+// 通過点をなめらかに結ぶ（Catmull-Rom スプラインを3次ベジェ曲線に変換）
+function smoothPath(pts) {
+  if (pts.length < 2) return '';
+  const t = 1 / 6; // 曲がり具合。小さくすると直線に近づく
+  let d = `M ${pts[0].x} ${pts[0].y}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1] || pts[i];
+    const p1 = pts[i];
+    const p2 = pts[i + 1];
+    const p3 = pts[i + 2] || p2;
+    const c1x = p1.x + (p2.x - p0.x) * t;
+    const c1y = p1.y + (p2.y - p0.y) * t;
+    const c2x = p2.x - (p3.x - p1.x) * t;
+    const c2y = p2.y - (p3.y - p1.y) * t;
+    d += ` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${p2.x} ${p2.y}`;
+  }
+  return d;
+}
+
+function drawTrail() {
+  if (trail.length === 0 || grid.children.length === 0) {
+    trailPath.setAttribute('d', '');
+    trailStart.setAttribute('r', 0);
+    return;
+  }
+  const pts = trail.map(cellCenter);
+  const cellSize = grid.children[0].getBoundingClientRect().width;
+
+  trailPath.setAttribute('d', smoothPath(pts));
+  trailPath.style.strokeWidth = Math.max(2, cellSize * 0.08);
+
+  // 始点に小さな丸
+  trailStart.setAttribute('cx', pts[0].x);
+  trailStart.setAttribute('cy', pts[0].y);
+  trailStart.setAttribute('r', Math.max(3, cellSize * 0.1));
+}
+
+// ----------------------------------------------------------------------
 
 
 function updateTravelCost() {
@@ -491,7 +563,7 @@ function setIdleState(button, duration, value) {
   // クラスに応じてインターバルを設定
   const interval = (button.classList.contains('large-food-tree') || button.classList.contains('small-food-tree')) ? 500 : 1000;
 console.log("Set interval to:", interval);
-    
+
   activeIntervalId = setInterval(() => {
     // 制限時間が切れている場合、すべての処理を停止
     if (remainingTime <= 0) {
@@ -567,7 +639,3 @@ function endGame() {
     previousButton.classList.remove('clicked'); // 黒枠を解除
   }
 }
-
-
-
-
