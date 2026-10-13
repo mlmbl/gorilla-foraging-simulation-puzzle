@@ -6,9 +6,9 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
-  align-items: center;
   justify-content: center;
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -18,25 +18,33 @@ body {
 #container {
   width: 90%;
   max-width: 600px;
-  height: 95vh;
+  height: 100vh;
+  height: 100dvh;
+  padding: 10px 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 6px;
   text-align: center;
 }
 
-/* タイトルの文字サイズを小さく調整 */
+/* タイトル */
 h1 {
-  font-size: 24px; /* 適宜調整してください */
-  margin-bottom: 10px; /* 余白も調整 */
+  font-size: 24px;
   text-align: center;
+}
+
+/* ボタン群 */
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
 }
 
 #info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 #info span {
@@ -45,19 +53,25 @@ h1 {
   font-size: 16px;
 }
 
+/* グリッド：残りの空間の「幅と高さの小さいほう」を一辺とする正方形 */
 #grid {
+  --gap: 4px;
+  --cell: calc((min(100cqw, 100cqh) - 9 * var(--gap)) / 10);
+  flex: 1 1 0;
+  min-height: 0;
+  container-type: size; /* 子のマスが #grid の大きさを参照できるようにする */
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 5px;
-  flex-grow: 1;
-  max-height: 100%; 
-  aspect-ratio: 1 / 1;
+  grid-template-columns: repeat(10, var(--cell));
+  grid-template-rows: repeat(10, var(--cell));
+  gap: var(--gap);
+  justify-content: center;
+  align-content: center;
 }
 
 .grid-button {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  font-size: 24px;
+  height: 100%;
+  font-size: calc(var(--cell) * 0.45);
   font-weight: bold;
   color: black;
   cursor: pointer;
@@ -72,29 +86,21 @@ h1 {
   border-color: black !important;
 }
 
-/* /\* 0点および取得済みのマス *\/ */
-/* .grid-button.zero, .grid-button.collected { */
-/*   background-color: #d4f7c5; /\* 黄緑色 *\/ */
-/*   color: transparent; /\* 数字を非表示 *\/ */
-/* } */
-
-
-
+/* 訪問済みのマス */
 .grid-button.visited {
-    background-image: repeating-linear-gradient(
-	45deg,
-	#d3d3d3 0,
-	#d3d3d3 1px,
-	transparent 1px,
-	transparent 7px
-    );
-    border-color: #d3d3d3; 
-  /* background-color: gray !important; /\* 元いたマスを灰色に *\/ */
+  background-image: repeating-linear-gradient(
+    45deg,
+    #d3d3d3 0,
+    #d3d3d3 1px,
+    transparent 1px,
+    transparent 7px
+  );
+  border-color: #d3d3d3;
 }
 
 /* 0点のマス */
 .grid-button.no-food {
-  background-color: #fffdd0; /* 黄緑色 */
+  background-color: #fffdd0;
   color: transparent; /* 数字を非表示 */
 }
 
@@ -104,14 +110,9 @@ h1 {
   color: black;
 }
 
-/* /\* 1点のマス (黄緑色) *\/ */
-/* .grid-button.thv { */
-/*   background-color: #98FB98; /\* 黄緑色 *\/ */
-/* } */
-
 .grid-button.savanna {
   background-color: #f0e68c; /* 薄い黄色 (サバンナ) */
-  color: transparent; /* フォントの色を透明にして表示を隠す */
+  color: transparent; /* 数字を非表示 */
 }
 
 .grid-button.forest {
@@ -130,32 +131,27 @@ h1 {
   background-color: #FF6347; /* トマト色 (大型食物樹) */
 }
 
-
 .grid-button.eaten {
-  color: white; /* 食べたマスの数字を赤に */
+  color: white; /* 食べたマスの数字を白に */
 }
 
 .grid-button.start {
-  border-color: red !important; /* 枠の色を赤に設定 */
+  border-color: red !important; /* 初期位置は赤枠 */
 }
 
 .grid-button.ended {
-  /* background-color: gray; /\* 灰色 *\/ */
-  border-color: blue !important; /* 枠を青に設定 */
+  border-color: blue !important; /* 終了位置は青枠 */
 }
 
 /* 無効化されたマス */
 .grid-button.disabled {
-    background-color: white; !important;
+  background-color: white !important;
   cursor: not-allowed;
 }
-
 
 .neighbor-highlight {
   border: 2px dashed black; /* 点線の枠線 */
 }
-
-
 
 #message {
   font-size: 18px;
@@ -170,9 +166,3 @@ h1 {
     opacity: 0;
   }
 }
-
-#score-board, #ten-points, #five-points, #one-point, #timer {
-  margin: 5px 0;
-}
-
-
