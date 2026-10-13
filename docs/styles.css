@@ -61,6 +61,30 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative; /* 軌跡レイヤーの基準 */
+}
+
+/* ゴリラの軌跡（グリッドの上に重ねる。クリックはマスに素通しする） */
+#trail {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.trail-line {
+  fill: none;
+  stroke: #5a3a1a;        /* こげ茶 */
+  stroke-opacity: 0.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.trail-start {
+  fill: #5a3a1a;
+  fill-opacity: 0.7;
 }
 
 /* グリッド：外枠の「幅と高さの小さいほう」を一辺とする正方形 */
