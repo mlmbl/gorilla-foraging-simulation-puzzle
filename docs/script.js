@@ -39,6 +39,19 @@ document.getElementById('how-to-play-button').addEventListener('click', function
 });
 
 function startGame() {
+  // 前回のゲームの後片付け（2回目以降のゲームのため）
+  clearInterval(gameInterval);
+  if (activeIntervalId !== null) {
+    clearInterval(activeIntervalId);
+    activeIntervalId = null;
+  }
+  grid.replaceChildren();   // 古いマスを消す
+  trail = [];
+  previousButton = null;
+  remainingTime = 60;
+  timerDisplay.textContent = `Time: ${remainingTime}s`;
+  messageDisplay.textContent = '';
+
   score = 0;
   maxScore = 0;
   moveCount = 0;
@@ -46,6 +59,7 @@ function startGame() {
   document.getElementById('point').textContent = 'Score: 0';
   document.getElementById('max-score').textContent = 'Max Score: 0';
   document.getElementById('travel-cost').textContent = 'Travel cost: 0';
+  scoreBoard.textContent = 'Food intake: 0';
 
 
   startButton.disabled = true; // スタートボタンを無効化
@@ -620,8 +634,19 @@ function startTimer() {
 
 function endGame() {
   // ゲーム終了処理
+  // 採食中だった場合はその加算も止める
+  if (activeIntervalId !== null) {
+    clearInterval(activeIntervalId);
+    activeIntervalId = null;
+  }
+  messageDisplay.textContent = '';
+
   stopButton.style.display = 'none'; // Stopボタンを隠す
   timerDisplay.textContent = 'Game Over.'; // 終了メッセージ
+
+  // 新しいゲームを始められるようにする
+  startButton.disabled = false;
+  startButton.textContent = 'Start New Game';
 
   // すべてのグリッドボタンを無効化し、未表示の非0点セルを白で表示
   document.querySelectorAll('.grid-button').forEach(button => {
