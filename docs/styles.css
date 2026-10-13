@@ -53,25 +53,33 @@ h1 {
   font-size: 16px;
 }
 
-/* グリッド：残りの空間の「幅と高さの小さいほう」を一辺とする正方形 */
-#grid {
-  --gap: 4px;
-  --cell: calc((min(100cqw, 100cqh) - 9 * var(--gap)) / 10);
+/* グリッドの外枠：残りの空間をすべて受け持ち、その大きさを中のグリッドに伝える */
+#grid-wrap {
   flex: 1 1 0;
   min-height: 0;
-  container-type: size; /* 子のマスが #grid の大きさを参照できるようにする */
-  display: grid;
-  grid-template-columns: repeat(10, var(--cell));
-  grid-template-rows: repeat(10, var(--cell));
-  gap: var(--gap);
+  container-type: size;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  align-content: center;
+}
+
+/* グリッド：外枠の「幅と高さの小さいほう」を一辺とする正方形 */
+#grid {
+  --side: min(100cqw, 100cqh);
+  width: var(--side);
+  height: var(--side);
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  grid-template-rows: repeat(10, minmax(0, 1fr));
+  gap: 4px;
 }
 
 .grid-button {
   width: 100%;
   height: 100%;
-  font-size: calc(var(--cell) * 0.45);
+  min-width: 0;
+  min-height: 0;
+  font-size: calc(var(--side) / 10 * 0.45);
   font-weight: bold;
   color: black;
   cursor: pointer;
